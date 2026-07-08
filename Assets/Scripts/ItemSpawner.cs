@@ -5,8 +5,8 @@ public class ItemSpawner : MonoBehaviour
 {
     [SerializeField] private List<SpawnPoint> _spawnTargets;
     [SerializeField] private List<Item> _itemPrefabs;
-    private float _timer;
     [SerializeField] private float _coolDown;
+    private float _timer;
 
     private void Update()
     {
@@ -36,11 +36,7 @@ public class ItemSpawner : MonoBehaviour
                 Debug.LogError($"не удалось создать объект {item.NameItem}");
             }    
         }
-            
-
-     
     }
-
     private List<SpawnPoint> GetEmptyPoints()
     {
         List<SpawnPoint> emptyPoints = new List<SpawnPoint>();
@@ -50,7 +46,13 @@ public class ItemSpawner : MonoBehaviour
             if (spawnPoints.IsEmpty)
                 emptyPoints.Add(spawnPoints);
         }
-
+        
         return emptyPoints;
     }
 }
+        
+
+            
+
+     
+

@@ -6,7 +6,6 @@ public class Mover : MonoBehaviour
     private float _horizontalInput;
     private float _verticalInput;
     public Vector3 Direction {get; private set;} 
-    
     private float _deadZone = 0.1f;
     private CharacterController _characterController;
     private Character _character;
@@ -18,7 +17,6 @@ public class Mover : MonoBehaviour
         _characterController = GetComponent<CharacterController>();
         _character = GetComponent<Character>();
     }
-
     private void Update()
     {
         _horizontalInput = Input.GetAxis(_horizontalAxisKey);
@@ -31,15 +29,10 @@ public class Mover : MonoBehaviour
         RotationTo(Direction);
         MoveTo(Direction);
     }
-
-    
-
     private void MoveTo(Vector3 direction)
     {
         _characterController.Move(direction * _character.MoveSpeed * Time.deltaTime);
     }
-        
-
     private void RotationTo(Vector3 direction)
     {
         Quaternion lookRotation = Quaternion.LookRotation(direction);
@@ -47,3 +40,10 @@ public class Mover : MonoBehaviour
         transform.rotation = Quaternion.RotateTowards(transform.rotation, lookRotation, step);
     }
 }
+        
+
+
+    
+
+
+    

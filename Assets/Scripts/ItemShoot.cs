@@ -9,7 +9,6 @@ public class ItemShoot : Item
         base.Initialize(nameItem);
         NameItem = _name;
     }
-
     protected override void Update()
     {
         base.Update();
@@ -20,3 +19,4 @@ public class ItemShoot : Item
         base.OnTransformParentChanged();
     }
 }
+

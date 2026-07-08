@@ -13,9 +13,9 @@ public class ItemSpeedBoost : Item
     {
         base.Update();
     }
-
     protected override void OnTransformParentChanged()
     {
         base.OnTransformParentChanged();
     }
 }
+

@@ -9,7 +9,6 @@ public class ItemHeal : Item
         base.Initialize(nameItem);
         NameItem = _name;
     }
-
     protected override void Update()
     {
         base.Update();
@@ -20,3 +19,4 @@ public class ItemHeal : Item
         base.OnTransformParentChanged();
     }
 }
+

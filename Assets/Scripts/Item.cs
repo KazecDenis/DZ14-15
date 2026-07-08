@@ -44,11 +44,11 @@ public class Item : MonoBehaviour
             transform.position = _defaultPosition + Vector3.up * Mathf.Sin(_time) / 5;
         }
     }
-
-
     protected virtual void OnTransformParentChanged() 
     {
         if (IsParent == false)
             Destroy(gameObject, _destroyTime);
     }
 }
+
+

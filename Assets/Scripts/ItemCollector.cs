@@ -59,9 +59,6 @@ public class ItemCollector : MonoBehaviour
             }
         }
     }
-                
-       
-
     public void AddItem(Item item)
     {
         _items.Add(item);
@@ -86,3 +83,6 @@ public class ItemCollector : MonoBehaviour
         }
     }
 }
+                
+       
+
