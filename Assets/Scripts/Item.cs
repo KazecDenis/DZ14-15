@@ -9,7 +9,7 @@ public class Item : MonoBehaviour
     private float _time;
     public string NameItem {get; set;}
 
-    public virtual bool IsParent
+    public bool IsParent
     {
         get
         {
