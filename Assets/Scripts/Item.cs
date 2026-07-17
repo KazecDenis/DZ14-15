@@ -4,10 +4,11 @@ public abstract class Item : MonoBehaviour
 {
     [SerializeField] private Vector3 _offset;
     [SerializeField] protected ParticleSystem _picUpEffect;
-
-    public string NameItem {get; protected set;}
+    [SerializeField] protected ParticleSystem _useEffect;
+    [SerializeField] protected string _nameItem;
+    public string NameItem => _nameItem;
     private RotatorEffect _rotatorEffect;
-
+    private float _destroyTargetOffsetY = 5f;
 
     private void Awake()
     {
@@ -24,35 +25,38 @@ public abstract class Item : MonoBehaviour
             transform.SetParent(parent);
             transform.localPosition = offset;
             _rotatorEffect.enabled = false;
-            ApplyEffectTake(_picUpEffect);
+            PicUpEffectTake();
     }
-    protected virtual void ApplyEffectTake(ParticleSystem particleSystem)
+    public virtual void PicUpEffectTake()
     {
-        if (particleSystem != null)
+        if (_picUpEffect != null)
         {
-            particleSystem.transform.position = transform.position;
-            particleSystem.Play();
+            _picUpEffect.transform.position = transform.position;
+            _picUpEffect.Play();
         }
         else
         {
-            Debug.LogError("pupupu");
+            Debug.LogError("_picUpEffect null");
         }
             
     }
     public abstract void Use(Character character);
 
-    protected void DestroyWithItem(ParticleSystem particleSystem)
+    public void DestroyWithItem(Character character)
     {   
-        if (particleSystem != null)
+        if (_useEffect != null)
         {
-            particleSystem.transform.position = transform.position;
-            particleSystem.Play();
+            _useEffect.transform.SetParent(null);
+            Vector3 targetEffect = new Vector3(character.transform.position.x, _destroyTargetOffsetY, character.transform.position.z);
+            _useEffect.transform.position = targetEffect;
+            _useEffect.Play();
+            Destroy(_useEffect);
         }
         else
         {
-            Debug.LogError("pupupu");
+            Debug.LogError("_useEffect null");
         }
-            
+
         Destroy(gameObject);
     }
 
@@ -61,5 +65,6 @@ public abstract class Item : MonoBehaviour
         Debug.Log($"предмет {NameItem} был использован");
     }
 }
+            
 
 

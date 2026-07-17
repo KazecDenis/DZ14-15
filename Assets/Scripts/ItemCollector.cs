@@ -8,7 +8,13 @@ public class ItemCollector : MonoBehaviour
     private List<Item> _items;
     private int _maxItem = 1;
 
-    public bool HasItem() => _items.Count > 0;
+    public bool IsPicUp()
+    {
+        if (_items.Count == 0)
+            return false;
+
+        return true;
+    }
     
     private void Awake()
     {

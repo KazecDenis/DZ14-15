@@ -20,6 +20,11 @@ public class Character : MonoBehaviour
     {
       bool _useItemCommand = Input.GetKeyDown(KeyCode.F);
 
+      if (_itemCollector.IsPicUp() == false)
+      {
+         return;
+      }
+
       if (_useItemCommand && _itemCollector != null)
       {
          Item currentItem = _itemCollector.GetCurrentItem();
