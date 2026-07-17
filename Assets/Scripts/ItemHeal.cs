@@ -13,6 +13,6 @@ public class ItemHeal : Item
         DestroyWithItem(character);
         MessageUseItem();
     }
-   
 }
+   
 

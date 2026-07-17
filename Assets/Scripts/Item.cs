@@ -6,9 +6,10 @@ public abstract class Item : MonoBehaviour
     [SerializeField] protected ParticleSystem _picUpEffect;
     [SerializeField] protected ParticleSystem _useEffect;
     [SerializeField] protected string _nameItem;
-    public string NameItem => _nameItem;
     private RotatorEffect _rotatorEffect;
+    private float _delay = 1f;
     private float _destroyTargetOffsetY = 5f;
+    public string NameItem => _nameItem;
 
     private void Awake()
     {
@@ -22,10 +23,10 @@ public abstract class Item : MonoBehaviour
 
     public virtual void PicUpItem(Transform parent,Vector3 offset) 
     {
-            transform.SetParent(parent);
-            transform.localPosition = offset;
-            _rotatorEffect.enabled = false;
-            PicUpEffectTake();
+        transform.SetParent(parent);
+        transform.localPosition = offset;
+        _rotatorEffect.OffRotation();
+        PicUpEffectTake();
     }
     public virtual void PicUpEffectTake()
     {
@@ -50,7 +51,7 @@ public abstract class Item : MonoBehaviour
             Vector3 targetEffect = new Vector3(character.transform.position.x, _destroyTargetOffsetY, character.transform.position.z);
             _useEffect.transform.position = targetEffect;
             _useEffect.Play();
-            Destroy(_useEffect);
+            Destroy(_useEffect.gameObject, _delay);
         }
         else
         {

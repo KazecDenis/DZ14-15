@@ -3,6 +3,7 @@ using UnityEngine;
 public class Character : MonoBehaviour
 {
    [SerializeField] private int _health;
+   [SerializeField] private int _maxHealth;
    [SerializeField] private float _moveSpeed;
    [SerializeField] private float _speedBoost;
    [SerializeField] private float _speedLimit;
@@ -37,6 +38,12 @@ public class Character : MonoBehaviour
    {
          Health += amount;
          Debug.Log($"жизни игрока - {Health}");
+
+         if (Health >= _maxHealth)
+         {
+            Health = _maxHealth;
+            Debug.Log("у вас максимум жизней");
+         }
    }
 
    public void AddSpeed(float speedBoost)
@@ -62,5 +69,5 @@ public class Character : MonoBehaviour
 
       Destroy(newBullet.gameObject, destroyTimeBullet);
    }
-   
 }
+   
