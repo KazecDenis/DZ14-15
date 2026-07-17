@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 5111753016183206401}
   - component: {fileID: 2267037246419137877}
   - component: {fileID: 8122868456816217561}
+  - component: {fileID: -250655184659355576}
   m_Layer: 0
   m_Name: bomb_B_yellow
   m_TagString: Untagged
@@ -98,8 +99,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e1d983c3d31624a8ebfbb1e4a2684374, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _rotateSpeed: 50
-  _destroyTime: 5
+  _offset: {x: 0, y: 0, z: 0}
+  _picUpEffect: {fileID: 0}
+  _bulletPrefab: {fileID: 1475117791340132119, guid: 512c94205a08042678f310da689c1f52, type: 3}
+  _bulletSpeed: 10
+  _destroyTimeBullet: 3
+  _useEffect: {fileID: 0}
 --- !u!135 &2267037246419137877
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -148,3 +153,16 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 1
+--- !u!114 &-250655184659355576
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1768714538952015676}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4480363bb69304712b31d7e67b2e0583, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _rotateSpeed: 50

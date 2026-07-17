@@ -1,21 +1,18 @@
-
+using UnityEngine;
 
 public class ItemSpeedBoost : Item
 {
-   private string _name = "SpeedBoost";
+   [SerializeField] private float _speedBoost;
+   [SerializeField] private ParticleSystem _useEffect;
 
-    public override void Initialize(string nameItem)
+    public override void Use(Character character)
     {
-        base.Initialize(nameItem);
-        NameItem = _name;
-    }
-    protected override void Update()
-    {
-        base.Update();
-    }
-    protected override void OnTransformParentChanged()
-    {
-        base.OnTransformParentChanged();
+        if (character == null)
+            return;
+
+        character.AddSpeed(_speedBoost);
+        DestroyWithItem(_useEffect);
+        MessageUseItem();
     }
 }
 

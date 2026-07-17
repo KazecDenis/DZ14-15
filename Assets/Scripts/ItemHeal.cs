@@ -1,22 +1,19 @@
 
+using UnityEngine;
 
 public class ItemHeal : Item
 {
-   private string _name = "Health";
+    [SerializeField] private int _healAmount;
+    [SerializeField] private ParticleSystem _useEffect;
+    public override void Use(Character character)
+    {
+        if (character == null)
+            return;
 
-    public override void Initialize(string nameItem)
-    {
-        base.Initialize(nameItem);
-        NameItem = _name;
+        character.AddHeal(_healAmount);
+        DestroyWithItem(_useEffect);
+        MessageUseItem();
     }
-    protected override void Update()
-    {
-        base.Update();
-    }
-
-    protected override void OnTransformParentChanged()
-    {
-        base.OnTransformParentChanged();
-    }
+   
 }
 

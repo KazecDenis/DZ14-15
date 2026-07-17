@@ -27,7 +27,6 @@ public class ItemSpawner : MonoBehaviour
 
             if (item != null)
             {
-                item.Initialize(item.NameItem);
                 spawnPoint.Occupy(item);
                 _timer = 0;
             }

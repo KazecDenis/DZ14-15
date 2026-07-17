@@ -13,6 +13,7 @@ GameObject:
   - component: {fileID: 6825486013267088188}
   - component: {fileID: 2741406226158672000}
   - component: {fileID: -6031238731540218303}
+  - component: {fileID: -6344257999552806601}
   m_Layer: 0
   m_Name: heart_red
   m_TagString: Untagged
@@ -97,9 +98,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a790b8a8a46e846c882d1bc94079dd6e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _rotateSpeed: 50
-  _destroyTime: 5
   _offset: {x: 0, y: 0, z: 0}
+  _picUpEffect: {fileID: 0}
+  _useEffect: {fileID: 0}
+  _healAmount: 10
 --- !u!135 &-6031238731540218303
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -121,3 +123,16 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 0.5400325
   m_Center: {x: 0, y: 0.05242148, z: -0.000000029802322}
+--- !u!114 &-6344257999552806601
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7502018160676654770}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4480363bb69304712b31d7e67b2e0583, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _rotateSpeed: 50

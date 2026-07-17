@@ -1,53 +1,64 @@
 using UnityEngine;
 
-public class Item : MonoBehaviour
+public abstract class Item : MonoBehaviour
 {
-    [SerializeField] private float _rotateSpeed;
-    [SerializeField] private float _destroyTime;
     [SerializeField] private Vector3 _offset;
-    private Vector3 _defaultPosition;
-    private float _time;
-    public string NameItem {get; set;}
+    [SerializeField] protected ParticleSystem _picUpEffect;
 
-    public bool IsParent
-    {
-        get
-        {
-            if (transform.parent != null)
-                return true;
+    public string NameItem {get; protected set;}
+    private RotatorEffect _rotatorEffect;
 
-            return false;
-        }
-    }
-    public virtual void Initialize(string nameItem)
+
+    private void Awake()
     {
-        _defaultPosition = transform.position;
-        NameItem = nameItem;
+        _rotatorEffect = GetComponent<RotatorEffect>();
     }
 
     public void SetOffset(Vector3 offset)
     {
         _offset = offset;
     }
-    protected virtual void Update()
+
+    public virtual void PicUpItem(Transform parent,Vector3 offset) 
     {
-        _time += Time.deltaTime;
-
-        transform.Rotate(Vector3.up, Time.deltaTime * _rotateSpeed);
-
-        if (IsParent)
+            transform.SetParent(parent);
+            transform.localPosition = offset;
+            _rotatorEffect.enabled = false;
+            ApplyEffectTake(_picUpEffect);
+    }
+    protected virtual void ApplyEffectTake(ParticleSystem particleSystem)
+    {
+        if (particleSystem != null)
         {
-            transform.position = transform.parent.TransformPoint(_offset);
+            particleSystem.transform.position = transform.position;
+            particleSystem.Play();
         }
         else
         {
-            transform.position = _defaultPosition + Vector3.up * Mathf.Sin(_time) / 5;
+            Debug.LogError("pupupu");
         }
+            
     }
-    protected virtual void OnTransformParentChanged() 
+    public abstract void Use(Character character);
+
+    protected void DestroyWithItem(ParticleSystem particleSystem)
+    {   
+        if (particleSystem != null)
+        {
+            particleSystem.transform.position = transform.position;
+            particleSystem.Play();
+        }
+        else
+        {
+            Debug.LogError("pupupu");
+        }
+            
+        Destroy(gameObject);
+    }
+
+    protected void MessageUseItem()
     {
-        if (IsParent == false)
-            Destroy(gameObject, _destroyTime);
+        Debug.Log($"предмет {NameItem} был использован");
     }
 }
 
