@@ -2,7 +2,6 @@ using UnityEngine;
 
 public abstract class Item : MonoBehaviour
 {
-    [SerializeField] private Vector3 _offset;
     [SerializeField] protected ParticleSystem _picUpEffect;
     [SerializeField] protected ParticleSystem _useEffect;
     [SerializeField] protected string _nameItem;
@@ -14,11 +13,6 @@ public abstract class Item : MonoBehaviour
     private void Awake()
     {
         _rotatorEffect = GetComponent<RotatorEffect>();
-    }
-
-    public void SetOffset(Vector3 offset)
-    {
-        _offset = offset;
     }
 
     public virtual void PicUpItem(Transform parent,Vector3 offset) 
